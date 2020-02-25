@@ -1,4 +1,4 @@
-import {insert, remove} from '../bst'
+import {find, insert, remove} from '../bst'
 
 describe('Algorithms', () => {
   describe('BST', () => {
@@ -108,6 +108,43 @@ describe('Algorithms', () => {
       expect(insert(tree, valueToInsert)).toEqual(expectedTree)
     })
   
+    it('insert 3', () => {
+      const tree = {
+        value: 4,
+        left: {
+          value: 3,
+          left: null,
+          right: null,
+        },
+        right: {
+          value: 6,
+          left: null,
+          right: null
+        }
+      }
+  
+      const valueToInsert = 5
+      const expectedTree = {
+        value: 4,
+        left: {
+          value: 3,
+          left: null,
+          right: null,
+        },
+        right: {
+          value: 6,
+          left: {
+            value: 5,
+            left: null,
+            right: null
+          },
+          right: null
+        }
+      }
+  
+      expect(insert(tree, valueToInsert)).toEqual(expectedTree)
+    })
+  
     it('remove 1', () => {
       const tree = {
         value: 10,
@@ -196,6 +233,35 @@ describe('Algorithms', () => {
       }
 
       expect(remove(tree, valueToRemove)).toEqual(expectedTree)
+    })
+
+    it('find', () => {
+      const tree = {
+        value: 10,
+        left: {
+          value: 3,
+          left: {
+            value: 2,
+            left: null,
+            right: null,
+          },
+          right: {
+            value: 4,
+            left: null,
+            right: null,
+          }
+        },
+        right: {
+          value: 11,
+          left: null,
+          right: null
+        }
+      }
+  
+      const valueToFind1 = 2
+      const valueToFind2 = 7
+      expect(find(tree, valueToFind1)).toEqual(valueToFind1)
+      expect(find(tree, valueToFind2)).toEqual(null)
     })
   })
 })

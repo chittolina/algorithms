@@ -56,4 +56,33 @@ function remove(tree, value) {
   return tree
 }
 
-export {insert, remove}
+function find(tree, value) {
+  if (!value) {
+    return null
+  }
+  
+  if (value < tree.value) {
+    if (tree.left) {
+      return find(tree.left, value)
+    }
+
+    return null
+  }
+
+  if (value < tree.value) {
+    if (tree.right) {
+      return find(tree.right, value)
+    }
+
+    return null
+  }
+
+  if (value === tree.value) {
+    return value
+  }
+
+  return null
+}
+
+
+export {find, insert, remove}
