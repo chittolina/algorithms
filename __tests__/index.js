@@ -2,8 +2,8 @@ import {find, insert, remove} from '../bst'
 
 describe('Algorithms', () => {
   describe('BST', () => {
-    it('insert 1', () => {
-      const tree = {
+    it('insert', () => {
+      let tree = {
         value: 10,
         left: {
           value: 3,
@@ -19,13 +19,12 @@ describe('Algorithms', () => {
           }
         },
         right: {
-          value: 7,
+          value: 11,
           left: null,
           right: null
         }
       }
-  
-      const valueToInsert = 5
+      
       const expectedTree = {
         value: 10,
         left: {
@@ -39,114 +38,33 @@ describe('Algorithms', () => {
             value: 4,
             left: null,
             right: {
-              value: valueToInsert,
-              left: null,
+              value: 8,
+              left: {
+                value: 5,
+                left: null,
+                right: null
+              },
               right: null
             },
           }
         },
         right: {
-          value: 7,
+          value: 11,
           left: null,
           right: null
         }
       }
-  
-      expect(insert(tree, valueToInsert)).toEqual(expectedTree)
-    })
-   
-    it('insert 2', () => {
-      const tree = {
-        value: 10,
-        left: {
-          value: 3,
-          left: {
-            value: 2,
-            left: null,
-            right: null,
-          },
-          right: {
-            value: 4,
-            left: null,
-            right: null,
-          }
-        },
-        right: {
-          value: 7,
-          left: null,
-          right: null
-        }
-      }
-  
-      const valueToInsert = 1
-      const expectedTree = {
-        value: 10,
-        left: {
-          value: 3,
-          left: {
-            value: 2,
-            left: {
-              value: 1,
-              left: null,
-              right: null
-            },
-            right: null,
-          },
-          right: {
-            value: 4,
-            left: null,
-            right: null,
-          }
-        },
-        right: {
-          value: 7,
-          left: null,
-          right: null
-        }
-      }
-  
-      expect(insert(tree, valueToInsert)).toEqual(expectedTree)
+    
+      const valueToInsert1 = 8
+      const valueToInsert2 = 5
+      insert(tree, valueToInsert1)
+      tree = insert(tree, valueToInsert2)
+
+      expect(tree).toEqual(expectedTree)
     })
   
-    it('insert 3', () => {
-      const tree = {
-        value: 4,
-        left: {
-          value: 3,
-          left: null,
-          right: null,
-        },
-        right: {
-          value: 6,
-          left: null,
-          right: null
-        }
-      }
-  
-      const valueToInsert = 5
-      const expectedTree = {
-        value: 4,
-        left: {
-          value: 3,
-          left: null,
-          right: null,
-        },
-        right: {
-          value: 6,
-          left: {
-            value: 5,
-            left: null,
-            right: null
-          },
-          right: null
-        }
-      }
-  
-      expect(insert(tree, valueToInsert)).toEqual(expectedTree)
-    })
-  
-    it('remove 1', () => {
-      const tree = {
+    it('remove', () => {
+      let tree = {
         value: 10,
         left: {
           value: 3,
@@ -168,16 +86,14 @@ describe('Algorithms', () => {
         }
       }
   
-      const valueToRemove = 3
+      const valueToRemove1 = 3
+      const valueToRemove2 = 2
+    
       const expectedTree = {
         value: 10,
         left: {
           value: 4,
-          left: {
-            value: 2,
-            left: null,
-            right: null,
-          },
+          left: null,
           right: null,
         },
         right: {
@@ -187,52 +103,9 @@ describe('Algorithms', () => {
         }
       }
       
-      expect(remove(tree, valueToRemove)).toEqual(expectedTree)
-    })
-
-    it('remove 2', () => {
-      const tree = {
-        value: 10,
-        left: {
-          value: 3,
-          left: {
-            value: 2,
-            left: null,
-            right: null,
-          },
-          right: {
-            value: 4,
-            left: null,
-            right: null,
-          }
-        },
-        right: {
-          value: 11,
-          left: null,
-          right: null
-        }
-      }
-  
-      const valueToRemove = 2
-      const expectedTree = {
-        value: 10,
-        left: {
-          value: 3,
-          left: null,
-          right: {
-            value: 4,
-            left: null,
-            right: null
-          }
-        },
-        right: {
-          value: 11,
-          left: null,
-          right: null
-        }
-      }
-
-      expect(remove(tree, valueToRemove)).toEqual(expectedTree)
+      remove(tree, valueToRemove1)
+      tree = remove(tree, valueToRemove2)
+      expect(tree).toEqual(expectedTree)
     })
 
     it('find', () => {
